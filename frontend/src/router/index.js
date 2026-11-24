@@ -7,32 +7,14 @@ const router = createRouter({
     {
       path: '/',
       component: MainLayout,
-      children: [
-        {
-          path: '',
-          name: 'home',
-          component: () => import('../pages/HomePage.vue'),
-          meta: { title: 'Inicio' },
-        },
-        {
-          path: 'about',
-          name: 'about',
-          component: () => import('../pages/AboutPage.vue'),
-          meta: { title: 'Acerca del proyecto' },
-        },
-      ],
+      children: [{ path: '', name: 'home', component: () => import('../pages/HomePage.vue') }],
     },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect: '/',
-    },
+    { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
-  scrollBehavior: () => ({ top: 0 }),
 })
 
-router.afterEach((to) => {
-  document.title = `${to.meta.title ?? 'Página'} | UPC Project`
+router.afterEach(() => {
+  document.title = 'Arquitectura de Sistemas Operativos | UPC'
 })
 
 export default router
-
